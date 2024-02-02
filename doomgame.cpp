@@ -17,32 +17,23 @@ int createDemon()
     return x;
 }
 
-int createSlayer()
-{
-    int x;
-
-    x = rand () % 20;
-
-    return x;
-}
-
 int main()
 {
     system("Color 00");
     system("Color 0A");
 
-
     ifstream file;
+
     string line;
 
     file.open("doomguy.txt");
 
-    while(getLine(file,line))
-    {
-        cout << line << endl;
-    }
+    while(getline(file,line))
+        {
+            cout << line << endl;
+        }
 
-    file.close();
+     file.close();
 
     srand(time(NULL));
 
@@ -56,13 +47,15 @@ int main()
 
     bool aliveSlayer = true;
 
+    int skilledSlayer = 12;
 
 
-    cout << "******//WELCOME TO THE GAME SLAYER! WHAT SHOULD WE CALL YOU? :";
 
-    cin >>slayerName;
+    cout << "******//WELCOME TO THE GAME SLAYER! WHAT SHOULD WE CALL YOU?\\****** : ";
 
-    cout << "\n\nHow many demons you can take down" << slayerName << "?" << endl;
+    cin >> slayerName;
+
+    cout << "\n\nHow many demons you can take down " << slayerName << "?";
 
     cin >> amountOfDemons;
 
@@ -71,98 +64,98 @@ int main()
 
     sleep(5);
 
-    while(amountOfDemons!=0 && aliveSlayer)
+    while(amountOfDemons!=0 && aliveSlayer == true)
     {
         int skilledDemon = createDemon();
 
-        int skilledSlayer = createSlayer();
 
-        if(skilledDemon <=5 )
+        if(skilledDemon > skilledSlayer)
         {
-             ifstream file2;
-             string line3;
-
-             file2.open("normalzombie.txt");
-
-             while(getLine(file2,line3))
-               {
-                 cout << line3 << endl;
-               }
-
-             file2.close();
-
-             cout << "YOU HAVE ENCOUNTERED A ZOMBIE! GET READY!" << endl;
-
-             sleep(3);
-
-
-        }
-        else if (skilledDemon >5 && skilledDemon <=15)
-        {
-            ifstream file3;
-            string line4;
-
-            file3.open("cacodemon.txt");
-
-            while(getLine(file3,line4))
-            {
-                cout << line4 << endl;
-            }
-
-            file3.close();
-
-            cout << "YOU HAVE ENCOUNTERED A CACODEMON! GET READY!" << endl;
-
-            sleep(3);
+            cout << "You died Slayer...Try it next time." << endl;
         }
         else
         {
-            ifstream file4;
-            string line5;
+          if(skilledDemon <= 5)
+          {
+              file.open("zombie.txt");
 
-            file4.open("marauder.txt");
+              while(getline(file,line))
+              {
+                  cout << line << endl;
+              }
 
-            while(getLine(file4,line5))
-            {
-                cout << line5 << endl;
-            }
+              file.close();
 
-            file4.close();
+              cout << "You have encountered with a zombie! Prepare for a fight!" << endl;
 
-            cout << "YOU HAVE ENCOUNTERED A MARAUDER! GET READY AND START PRAYING TO YOUR GODS!" << endl;
+              sleep(2);
+          }
 
-            sleep(3);
-        }
+          else if(skilledDemon > 5 && skilledDemon <=15)
+          {
+              file.open("cacodemon.txt");
 
+              while(getline(file,line))
+              {
+                  cout << line << endl;
+              }
 
-        if(skilledSlayer >= skilledDemon)
-        {
-            cout << "GOOD JOB SLAYER! HERE'S ANOTHER ONE...\n" << endl;
+              file.close();
 
-            slayerScore =*2;
+              cout << "You have encountered with a cacodemon! Prepare for a fight!" << endl;
 
-            killedDemons++;
+              sleep(2);
 
-            amountOfDemons--;
+          }
+          else
+          {
+              file.open("marauder.txt");
 
-            sleep(2);
-        }
-        else
-        {
-            cout << "YOU HAVE DIED SLAYER...TRY IT NEXT TIME...\n\n\n" << endl;
+              while(getline(file,line))
+              {
+                  cout << line << endl;
+              }
 
-            aliveSlayer == false;
+              file.close();
+
+              cout << "You have encountered with a marauder...Good luck with that..."<< endl;
+
+              sleep(2);
+          }
+
+          slayerScore = slayerScore * 2;
+
+          killedDemons++;
+
+          amountOfDemons--;
 
         }
     }
 
-    cout <<"YOU FINISHED THE SIMULATION SLAYER! HERE'S YOUR SCORES : \n\n\n" <<endl;
+
+        cout << "The game has just ended " << slayerName << "!|\n\n";
+
+        cout << "Here's your stats :\n" << endl;
 
 
-    cout <<"Your total score :" << slayerScore <<endl;
+        cout << "Score : " << slayerScore << endl;
 
-    cout << "You killed " << killedDemons << "demons."<< endl;
+        cout << "Killed Zombies : " << killedDemons << endl;
 
-//Currently program is not working because of cant recognizing the getLine command.
+        return(0);
 
-}
+    }
+
+   
+
+    
+
+    
+
+          
+        
+           
+
+           
+
+  
