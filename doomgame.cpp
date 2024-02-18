@@ -72,6 +72,10 @@ int main()
         if(skilledDemon > skilledSlayer)
         {
             cout << "You died Slayer...Try it next time." << endl;
+            
+
+            aliveSlayer = false;
+
         }
         else
         {
